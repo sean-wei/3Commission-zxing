@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="{php echo EWEI_SHOPV2_LOCAL}static/new/common.css">
+<link rel="stylesheet" type="text/css" href="{php echo EWEI_SHOPV2_LOCAL}static/new/mainPhone.css">
+<link rel="stylesheet" type="text/css" href="{php echo EWEI_SHOPV2_LOCAL}static/new/global.css">
+<link rel="stylesheet" type="text/css" href="{php echo EWEI_SHOPV2_LOCAL}static/new/Stryls.css">
+<link rel="stylesheet" type="text/css" href="{php echo EWEI_SHOPV2_LOCAL}static/new/swiper.min.css">
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/new/jquery.js"></script>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/jquery.promptu-menu.js"></script>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/jquery.promptu-menu.js"></script>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/layer02.js"></script>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/shop.js"></script>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/swiper.min.js"></script>
+
+
+{template 'myindex/myheader'}
+
+<div class='fui-content navbar' style="background-color: #FFFFFF;margin-top: 45px">
+		{loop $sorts $name $item}
+			{if $item['visible']==1}
+				{template 'shop/index/'.$name}
+			{/if}
+		{/loop}
+
+
+		{template 'myindex/about_us'}
+		{template 'myindex/doctor_team'}
+		{template 'myindex/hot'}
+		{template 'myindex/eye_case'}
+		{template 'myindex/nose_case'}
+		{template 'myindex/fengxiong_case'}
+
+		{template 'myindex/news'}
+
+
+
+		{template 'goods/picker'}
+		{template 'goods/wholesalePicker'}
+		{template '_copyright'}
+	</div>
+
+<!--青岛易联互动网络科技有限公司-->

@@ -1,0 +1,12 @@
+<!--热门项目开始-->
+
+<h2 class="indexNewH2"><a href="">热门项目</a></h2>
+<div class="indexNavListUl clearfix">
+
+
+    {loop $navs $nav}
+    <div class="indexNavList"><a href="{$nav['url']}">{$nav['navname']}</a></div>
+    {/loop}
+
+</div>
+<div class="height20px"></div>

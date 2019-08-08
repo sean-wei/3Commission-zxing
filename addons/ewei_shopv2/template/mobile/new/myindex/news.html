@@ -1,0 +1,22 @@
+<!--行业资讯开始-->
+<h2 class="indexNewH2"><a href="">行业资讯</a></h2>
+<div class="clearfix indexNewsUl">
+
+    {loop $newsList $item}
+    <div class="indexNewsUlList clearfix">
+        <h2 class="indexNewsUlListH2"><a href="{$item['link']}">{$item['article_title']}</a></h2>
+        <div class="indexNewsUlListDiv">
+            <a href="{$item['link']}">
+                <div class="indexLedft">{$item['index']}</div>
+                <div class="indexLRighty">
+                    {$item['resp_desc']}
+                </div>
+            </a>
+        </div>
+    </div>
+    {/loop}
+
+</div>
+
+<div class="height20px"></div>
+

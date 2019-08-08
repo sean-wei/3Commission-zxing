@@ -1,0 +1,51 @@
+{template '_header'}
+
+<div class="layout" style="background-color: #FFFFFF">
+    <div class="clearfix posfixed">
+        <div class="menu_icon clear">
+            <div class="Inn01-erSiteTop ">
+                <a href="javascript:window.history.back(-1);" class="mxjhui"><i class="icon01"></i></a>
+            </div>
+            <div class="tiaotlNav">分销员中心</div>
+
+        </div>
+    </div>
+
+
+    <div class="clearfix retailCenter">
+        <div class="retailCenterImgs"><img src="{EWEI_SHOPV2_STATIC}images/logo.png"></div>
+        <div class="clearfix retailCenterForm">
+
+            <form method="post" action="{php echo mobileUrl('account/login')}" class="tailCenterForm">
+                <div class="clearfix lCenterForm-grop">
+                    <div class="icon-shouji2"><img src="{EWEI_SHOPV2_STATIC}images/p.png"></div>
+                    <div class="van-fieldbody">
+                        <input type="tel" placeholder="请输入手机号码" name="mobile" id="mobile" maxlength="11" value="{php echo trim($_GPC['mobile'])}" class="van-fieldcontrol"></div>
+                </div>
+                <div class="clearfix lCenterForm-grop">
+                    <div class="icon-shouji2"><img src="{EWEI_SHOPV2_STATIC}images/s.png"></div>
+                    <div class="van-fieldbody">
+                        <input type="password" placeholder="请输入登录密码" value="" name="pwd" id="pwd" maxlength="20" class="van-fieldcontrol"></div>
+                    <a class="remark" style="font-size: 14px" href="{$set['wap']['forgeturl']}">忘记密码</a>
+                </div>
+
+                <div class="clearfix lCenterForm-grop" style="border:none;">
+                    <button class="lCenterForm-gropButton" type="submit">
+                        <span>立即登陆</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="text" style="font-size: 14px;text-align: center">
+        <p>还没有帐号? <a href="{$set['wap']['regurl']}">立即注册</a></p>
+    </div>
+
+
+</div>
+
+
+{php $initWX=true}
+{template '_footer'}

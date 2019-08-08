@@ -1,0 +1,24 @@
+{if !empty($diy_topmenu['data']) && $diy_topmenu['style']['showtype'] == 1}
+<div class="fui-tabbar fui-topmenu style1" style="height: 2rem;  z-index: 11;">
+    {loop $diy_topmenu['data'] $topmenu}
+    {if strpos($topmenu['linkurl'],'index.php') === false }
+    <a class="item external tab topmenu_tab" style="" href="javascript:;" data-notskip="1" data-url="{$topmenu['linkurl']}">{$topmenu['text']}</a>
+    {else}
+    <a class="item external tab topmenu_tab" style="" href="javascript:;" data-notskip="0" data-url="{$topmenu['linkurl']}">{$topmenu['text']}</a>
+    {/if}
+    {/loop}
+</div>
+{/if}
+
+
+{if !empty($diy_topmenu['data']) && $diy_topmenu['style']['showtype'] == 2}
+<div class="fui-tabbar fui-topmenu style2" style="height: 2rem;">
+    {loop $diy_topmenu['data'] $topmenu}
+    {if strpos($topmenu['linkurl'],'index.php') === false }
+    <a class="item external tab topmenu_tab" style="" href="javascript:;" data-notskip="1" data-url="{$topmenu['linkurl']}">{$topmenu['text']}</a>
+    {else}
+    <a class="item external tab topmenu_tab" style="" href="javascript:;" data-notskip="0" data-url="{$topmenu['linkurl']}">{$topmenu['text']}</a>
+    {/if}
+    {/loop}
+</div>
+{/if}
