@@ -12,6 +12,7 @@ class Index_EweiShopV2Page extends PluginMobilePage
 		$aid = intval($_GPC['aid']);
 		$openid = $_W['openid'];
 
+
 		if (!empty($openid)) {
 			$followed = m('user')->followed($openid);
 		}
@@ -140,6 +141,9 @@ class Index_EweiShopV2Page extends PluginMobilePage
 			}
 		}
 
+//		推广二维码图片
+        $qrcodeImg = $this->getqr();
+
 		$article['product_advs_link'] = $this->model->href_replace($article['product_advs_link']);
 		$article['article_linkurl'] = $this->model->href_replace($article['article_linkurl']);
 		include $this->template();
@@ -195,6 +199,90 @@ class Index_EweiShopV2Page extends PluginMobilePage
 			}
 		}
 	}
+
+
+	/**
+	 * 获取推广二维码图片
+	 *
+	 */
+	public function getQr(){
+        global $_W;
+
+        $p = p('poster');
+        $openid = $_W['openid'];
+
+        global $_W;
+        global $_GPC;
+        $shop_set = set_medias($_W['shopset']['shop'], 'signimg');
+        $path = IA_ROOT . '/addons/ewei_shopv2/data/poster/' . $_W['uniacid'] . '/';
+        if (!(is_dir($path)))
+        {
+            load()->func('file');
+            mkdirs($path);
+        }
+        $mid = intval($_GPC['mid']);
+        $openid = $_W['openid'];
+        $me = m('member')->getMember($openid);
+        if (($me['isagent'] == 1) && ($me['status'] == 1))
+        {
+            $userinfo = $me;
+        }
+        else
+        {
+            $mid = intval($_GPC['mid']);
+            if (!(empty($mid)))
+            {
+                $userinfo = m('member')->getMember($mid);
+            }
+        }
+        $md5 = md5(json_encode(array('openid' => $openid, 'signimg' => $shop_set['signimg'], 'shopset' => $shop_set, 'version' => 4)));
+        $file = $md5 . '.jpg';
+
+        $qrcode_file = tomedia($this->createMyShopQrcode($userinfo['id'])) ? tomedia($this->createMyShopQrcode($userinfo['id'])):'';
+        if (!(is_file($path . $file)))
+        {
+            $qrcode_file = tomedia($this->createMyShopQrcode($userinfo['id']));
+            $qrcode = $this->createImage($qrcode_file);
+        }
+//        var_dump($qrcode_file);
+
+        return $qrcode_file;
+    }
+
+
+    public function createMyShopQrcode($mid = 0, $posterid = 0)
+    {
+        global $_W;
+        $path = IA_ROOT . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'];
+        if (!(is_dir($path)))
+        {
+            load()->func('file');
+            mkdirs($path);
+        }
+        $url = mobileUrl('commission/myshop', array('mid' => $mid), true);
+        if (!(empty($posterid)))
+        {
+            $url .= '&posterid=' . $posterid;
+        }
+        $file = 'myshop_' . $posterid . '_' . $mid . '.png';
+        $qr_file = $path . '/' . $file;
+        if (!(is_file($qr_file)))
+        {
+            require IA_ROOT . '/framework/library/qrcode/phpqrcode.php';
+            QRcode::png($url, $qr_file, QR_ECLEVEL_H, 4);
+        }
+        return $_W['siteroot'] . 'addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . $file;
+    }
+
+    private function createImage($url)
+    {
+        load()->func('communication');
+        $resp = ihttp_request($url);
+        return imagecreatefromstring($resp['content']);
+    }
+
+
+
 }
 
 ?>

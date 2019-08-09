@@ -72,6 +72,7 @@ class Qrcode_EweiShopV2Page extends CommissionMobileLoginPage
 				}
 			}
 			else if (!empty($set['qrcode'])) {
+				//关注海报
 				if ($p) {
 					$img = $p->createCommissionPoster($openid, 0, 4);
 				}

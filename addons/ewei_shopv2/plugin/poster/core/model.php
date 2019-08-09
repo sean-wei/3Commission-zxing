@@ -60,7 +60,8 @@ class PosterModel extends PluginModel
     public function createCommissionPoster($openid, $goodsid = 0, $type = 0)
     {
         global $_W;
-        if( !$type ) 
+
+        if( !$type )
         {
             $type = 2;
             if( !empty($goodsid) ) 
@@ -130,6 +131,8 @@ class PosterModel extends PluginModel
         if( $poster["type"] == 1 ) 
         {
             $qrimg = m("qrcode")->createShopQrcode($member["id"], $poster["id"]);
+
+
             $qr = pdo_fetch("select * from " . tablename("ewei_shop_poster_qr") . " where openid=:openid and acid=:acid and type=:type limit 1", array( ":openid" => $member["openid"], ":acid" => $_W["acid"], ":type" => 1 ));
             if( empty($qr) ) 
             {
